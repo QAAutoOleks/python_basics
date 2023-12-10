@@ -14,3 +14,7 @@ food.pop() # remove last element
 food.insert(0, "cake") # add cake to index 0
 food.sort() # sort a-b
 food.clear() # delete all values
+
+print()
+slice_food = food[6:]
+print(slice_food)

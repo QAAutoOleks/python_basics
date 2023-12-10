@@ -21,6 +21,7 @@ website1 = "http://google.com"
 website2 = "http://wikipedia.com"
 # slice = slice(7) виведе все до 7 індекса
 # slice = slice(7, 17) виведе все від 7 індекса до 16 включно
+# slice = slice(50:) виведе порожній список
 psina = slice(7, -4) # виведе все від 7 індекса до 4 з кінця
 print(website1[psina])
 print(website2[psina])
