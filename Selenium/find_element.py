@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome()
 driver.get("https://www.example.com")
-
 time.sleep(3)
 
 # Get element with tag name 'div'
