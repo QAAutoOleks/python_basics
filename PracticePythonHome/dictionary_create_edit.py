@@ -42,3 +42,7 @@ dict5 = {
 }
 # accessing an dictionary {'Zaporizhzhia': 'Melitopol'}
 print(dict5[tup1]['Zaporizhzhia'], "\n")
+
+# deleting Elements using del Keyword
+del(dict5[tup1])
+print(f"'dict5' after deleting 0 element with key 'tup1':\n{dict5}\n")
