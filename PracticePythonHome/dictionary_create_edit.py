@@ -30,3 +30,15 @@ print(f"'dict4' after adding set:\n{dict4}\n")
 # update element
 dict4[1] = "Poltava"
 print(f"'dict4' after updating:\n{dict4}\n")
+
+# accessing an element of a nested Dictionary
+# you can't use other dictionary as values,
+# because dictionary is unhashable type
+# but you can use tuples for instance
+tup1 = ("ZP")
+dict5 = {
+    tup1: {'Zaporizhzhia': 'Melitopol'},
+    'dict': {'Name': 'Oleksandr'}
+}
+# accessing an dictionary {'Zaporizhzhia': 'Melitopol'}
+print(dict5[tup1]['Zaporizhzhia'], "\n")
