@@ -13,6 +13,5 @@ driver.get("https://rozetka.com.ua/ua/")
 
 time.sleep(3)
 elements = driver.find_elements(By.TAG_NAME, "a")
-# for e in elements:
 for e in elements:
     print(e.text)
