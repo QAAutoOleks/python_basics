@@ -19,3 +19,12 @@ def calculation(a, b):
 # print(calculation(20, 15))
 add, sub = calculation(40, 10)
 print(add, sub)
+
+
+# variable length
+def func(*args):
+    for i in args:
+        print(i)
+
+
+func(20, 40, 100)
