@@ -18,6 +18,7 @@ def calculation(a, b):
 # return 'tuple'
 # print(calculation(20, 15))
 add, sub = calculation(40, 10)
+print()
 print(add, sub)
 
 
@@ -27,4 +28,14 @@ def func(*args):
         print(i)
 
 
+print()
 func(20, 40, 100)
+
+
+def showEmployee(name, salary=9000):
+    print(f"Name: {name}\nSalary: {salary}")
+
+
+print()
+showEmployee("Ben", 12000)
+showEmployee("Jessa")
