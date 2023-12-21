@@ -2,19 +2,24 @@ import pytest
 import random
 
 
-class RandomListCreate:
-
-    list_random = []
+class RandomListCreate:    
 
     def __init__(self):
-        self.list_random = RandomListCreate.list_random
-
+        self.list_random = []
 
     def list_create(self):
         for i in range(0, 5):
             self.list_random.append(random.randint(1, 5))
-        return list_random
+        return self.list_random
+
+    def empty_list():
+        self.list_random = []
 
 
-rand = RandomListCreate()
-print(rand.list_create())
+@pytest.fixture
+def random_list_create():
+    random_list = RandomListCreate()
+    random_list.list_create()
+
+    yield random_list_create    
+    random_list.empty_list()
