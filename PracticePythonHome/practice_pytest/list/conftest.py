@@ -22,4 +22,4 @@ def new_list_create():
 
     yield list_new
 
-    list_new.list_clean
+    list_new.list_clean()
