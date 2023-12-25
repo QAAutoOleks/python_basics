@@ -3,8 +3,9 @@ import pytest
 
 class IfElse:
 
-    def __init__(self, scores):
-        self.result = IfElse.scores_method(scores)
+    def __init__(self, scores1=0, scores2=0):
+        self.result1 = IfElse.scores_method(scores1)
+        self.result2 = IfElse.scores_method(scores2)
 
     def scores_method(scores):
         if scores <= 10 and scores >= 0:
@@ -19,12 +20,12 @@ class IfElse:
             return "Incorrect input"
 
     def remove_result(self):
-        self.result = ""
+        self.result1 = ""
+        self.result2 = ""
 
 @pytest.fixture
 def if_else_method():
-    val = int(input("Enter value: "))
-    if_else = IfElse(val)
+    if_else = IfElse(10, 20)
 
     yield if_else
 
