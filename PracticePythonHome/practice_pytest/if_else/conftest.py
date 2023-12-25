@@ -23,7 +23,8 @@ class IfElse:
 
 @pytest.fixture
 def if_else_method():
-    if_else = IfElse(20)
+    val = int(input("Enter value: "))
+    if_else = IfElse(val)
 
     yield if_else
 
