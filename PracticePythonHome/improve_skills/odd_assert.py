@@ -12,6 +12,8 @@ list_for_testing = look_up_odd_numbers(given_list)
 def test_is_odd_in_list(list_for_testing):
     assert list_for_testing == [8, -20, 200]
     assert len(list_for_testing) == 3
+    # next comparison will check quantity of 
+    # numbers '5' in array (count())
     assert list_for_testing.count(5) == 0
 
 test_is_odd_in_list(list_for_testing)
