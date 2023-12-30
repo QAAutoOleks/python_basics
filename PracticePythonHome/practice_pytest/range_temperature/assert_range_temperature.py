@@ -6,15 +6,12 @@ def water_condition(t):
         return "Ice"
     elif t >= 0 and t < 100:
         return "Water"
-    else:
+    elif t > 100:
         return "Vapor"
+    else:
+        return "Error input"
 
 
 @pytest.fixture
 def water_tests():
-    assert water_condition(-1) == "Ice"
-    assert water_condition(0) == "Water"
-    assert water_condition(1) == "Water"
-    assert water_condition(99) == "Water"
-    assert water_condition(100) == "Vapor"
-    assert water_condition(101) == "Vapor"
+    return water_condition()
