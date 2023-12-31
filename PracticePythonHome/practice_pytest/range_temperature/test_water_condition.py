@@ -1,6 +1,6 @@
 import pytest
 
-
+@pytest.mark.checking_all_values
 def test_water(water_tests):
         assert water_tests == [
             "Ice", 
