@@ -8,3 +8,16 @@ for i in range(10):
 else:
     var+=1
 print(var)
+
+for num in range(-2,-5,-1):
+    print(num, end=", ")
+print()
+
+if -3:
+    print(True)
+
+a, b = 12, 5
+if a + b:
+    print('True')
+else:
+  print('False')
