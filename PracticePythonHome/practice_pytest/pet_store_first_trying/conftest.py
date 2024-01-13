@@ -3,6 +3,7 @@ import requests
 
 
 class PetStore:
+
     id = 0
 
     def __init__(self, base_url):
@@ -39,8 +40,8 @@ class PetStore:
 @pytest.fixture
 def pet_crud():
     first_pet = PetStore("https://petstore.swagger.io/v2/pet/")
-    first_pet.post_method("Dogs", "Pes")
-    first_pet.put_method("Mazik")
-    first_pet.get_by_id()
-
+    #first_pet.post_method("Dogs", "Pes")
+    #first_pet.put_method("Mazik")
+    #first_pet.get_by_id()
+    
     yield first_pet
