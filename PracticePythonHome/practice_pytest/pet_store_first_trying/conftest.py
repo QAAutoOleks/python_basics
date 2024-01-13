@@ -32,14 +32,15 @@ class PetStore:
         }
         self.r_put = requests.put(self.base_url, json = body)
 
-    def get_by_id(pets_id):
-        self.r_get_by_id = requests.get(base_url + pets_id)
+    def get_by_id(self):
+        self.r_get_by_id = (requests.get(self.base_url + str(self.id))).json()
 
 
 @pytest.fixture
 def pet_crud():
-    first_pet = PetStore("https://petstore.swagger.io/v2/pet")
+    first_pet = PetStore("https://petstore.swagger.io/v2/pet/")
     first_pet.post_method("Dogs", "Pes")
     first_pet.put_method("Mazik")
+    first_pet.get_by_id()
 
     yield first_pet
