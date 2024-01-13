@@ -10,7 +10,7 @@ class PetStore:
         PetStore.id += 1
         self.id = PetStore.id
 
-    def post_method(self, extra_part_of_url, name_category, name_of_pet):
+    def post_method(self, name_category, name_of_pet):
         body = {
             "id": self.id,
             "category": {"id": self.id, "name": name_of_pet},
@@ -19,9 +19,9 @@ class PetStore:
             "tags": [{"id": 0, "name": "string"}],
             "status": "available",
         }
-        self.r_post = requests.post(self.base_url + extra_part_of_url, json=body)
+        self.r_post = requests.post(self.base_url, json=body)
 
-    def put_method(self, extra_part_of_url, new_name):
+    def put_method(self, new_name):
         body = {
             "id": self.id,
             "category": {"id": self.id, "name": new_name},
@@ -30,13 +30,16 @@ class PetStore:
             "tags": [{"id": 0, "name": "string"}],
             "status": "available",
         }
-        self.r_put = requests.put(self.base_url + extra_part_of_url, json = body)
+        self.r_put = requests.put(self.base_url, json = body)
+
+    def get_by_id(pets_id):
+        self.r_get_by_id = requests.get(base_url + pets_id)
 
 
 @pytest.fixture
 def pet_crud():
-    first_pet = PetStore("https://petstore.swagger.io/v2/")
-    first_pet.post_method("pet", "Dogs", "Pes")
-    first_pet.put_method("pet", "Mazik")
+    first_pet = PetStore("https://petstore.swagger.io/v2/pet")
+    first_pet.post_method("Dogs", "Pes")
+    first_pet.put_method("Mazik")
 
     yield first_pet
