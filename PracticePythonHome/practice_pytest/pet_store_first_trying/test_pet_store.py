@@ -1,5 +1,8 @@
 import pytest
 
 
-def test_check_status_code(post_pet):
-    assert post_pet.r.status_code == 200
+def test_check_post(pet_crud):
+    assert pet_crud.r_post.status_code == 200
+    
+def test_check_put(pet_crud):
+    assert pet_crud.r_put.status_code == 200
