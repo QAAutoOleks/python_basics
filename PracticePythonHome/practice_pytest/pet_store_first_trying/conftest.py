@@ -48,7 +48,7 @@ class PetStore:
                 "userStatus": 0,
             },
             {
-                "id": self.id+1,
+                "id": self.id + 1,
                 "username": "JohnConnor",
                 "firstName": "John",
                 "lastName": "Connor",
@@ -56,15 +56,20 @@ class PetStore:
                 "password": "123",
                 "phone": "9999870043",
                 "userStatus": 0,
-            }
+            },
         ]
         self.r_create_list_of_users = requests.post(
-            self.base_url + 'createWithArray', json=body
-            )
+            self.base_url + "createWithArray", json=body
+        )
 
     def get_user(self, user_name):
-        r_get_user = requests.get(self.base_url + user_name)
-        self.r_get_user_return = r_get_user.json()
+        self.r_get_user = requests.get(self.base_url + user_name).json()
+
+    def login_user(self, login, password):
+        self.r_login_user = requests.get(
+            self.base_url + "login", 
+            params={'username': login, 'password': password}
+            )
 
 
 @pytest.fixture
@@ -81,6 +86,7 @@ def pet_crud():
 def user_crud():
     first_user = PetStore("https://petstore.swagger.io/v2/user/")
     first_user.create_list_of_users_with_array()
-    first_user.get_user('BobDylan')
+    first_user.get_user("BobDylan")
+    first_user.login_user('JohnConnor', '123')
 
     yield first_user
