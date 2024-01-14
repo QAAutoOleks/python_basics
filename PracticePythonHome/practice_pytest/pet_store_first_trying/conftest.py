@@ -3,7 +3,6 @@ import requests
 
 
 class PetStore:
-
     id = 0
 
     def __init__(self, base_url):
@@ -31,10 +30,41 @@ class PetStore:
             "tags": [{"id": 0, "name": "string"}],
             "status": "available",
         }
-        self.r_put = requests.put(self.base_url, json = body)
+        self.r_put = requests.put(self.base_url, json=body)
 
     def get_by_id(self):
         self.r_get_by_id = (requests.get(self.base_url + str(self.id))).json()
+
+    def create_list_of_users_with_array(self):
+        body = [
+            {
+                "id": self.id,
+                "username": "BobDylan",
+                "firstName": "Bob",
+                "lastName": "Dylan",
+                "email": "bob.dylan@mail.com",
+                "password": "123",
+                "phone": "9999876543",
+                "userStatus": 0,
+            },
+            {
+                "id": self.id+1,
+                "username": "JohnConnor",
+                "firstName": "John",
+                "lastName": "Connor",
+                "email": "john.connor.dylan@mail.com",
+                "password": "123",
+                "phone": "9999870043",
+                "userStatus": 0,
+            }
+        ]
+        self.r_create_list_of_users = requests.post(
+            self.base_url + 'createWithArray', json=body
+            )
+
+    def get_user(self, user_name):
+        r_get_user = requests.get(self.base_url + user_name)
+        self.r_get_user_return = r_get_user.json()
 
 
 @pytest.fixture
@@ -43,5 +73,14 @@ def pet_crud():
     first_pet.post_method("Dogs", "Pes")
     first_pet.put_method("Mazik")
     first_pet.get_by_id()
-    
+
     yield first_pet
+
+
+@pytest.fixture
+def user_crud():
+    first_user = PetStore("https://petstore.swagger.io/v2/user/")
+    first_user.create_list_of_users_with_array()
+    first_user.get_user('BobDylan')
+
+    yield first_user
