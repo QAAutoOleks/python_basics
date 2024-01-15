@@ -18,3 +18,6 @@ def test_create_list_of_user_with_array(user_crud):
     # 'id' is joint with 'pet_crud'
     assert user_crud.id == 5
     assert user_crud.r_login_user.status_code == 200
+
+def test_store(store_crud):
+    assert store_crud.r_get_order.json()['quantity'] == 2
