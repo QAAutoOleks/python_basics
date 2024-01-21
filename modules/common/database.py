@@ -11,7 +11,7 @@ class DatabaseGit():
         self.cursor = self.connection.cursor()
 
     def create_table(self):
-        # if table 'customers' exists, it deletes it
+        # if table 'customers' exists, query 'DROP TABLE' deletes it
         self.cursor.execute("DROP TABLE IF EXISTS customers")
         table = """CREATE TABLE customers (
             email VARCHAR(255) NOT NULL,
@@ -28,8 +28,8 @@ class DatabaseGit():
         self.cursor.execute(query)
         self.connection.commit()        
 
-    def get_data(self, email):
-        query = f"SELECT last_name FROM customers WHERE email = '{email}'"            
+    def get_data(self, name):
+        query = f"SELECT email FROM customers WHERE first_name = '{name}'"            
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record
@@ -37,6 +37,8 @@ class DatabaseGit():
 base = DatabaseGit()
 base.create_table()
 base.insert_in_table('mark.twain@mail.com', 'Mark', 'Twain')
-print(base.get_data('mark.twain@mail.com'))
+print(base.get_data('Mark'))
+insert_empty_email = base.insert_in_table(None, 'Nicola', 'Tesla')
+print(base.get_data('Nicola'))
 
 
