@@ -9,19 +9,17 @@ class DatabaseGit():
             r"C:\\Users\\User\\Desktop\\python_basics\\" + r"python_basics_database.db"
         )
         self.cursor = self.connection.cursor()
-        self.cursor.execute("DROP TABLE IF EXISTS customers")
 
     def create_table(self):
+        # if table 'customers' exists, it deletes it
+        self.cursor.execute("DROP TABLE IF EXISTS customers")
         table = """CREATE TABLE customers (
             email VARCHAR(255) NOT NULL,
             first_name CHAR(25) NOT NULL,
             last_name CHAR(25)
         )"""
-        #for i in colomn:
-        #    for j in i:
         self.cursor.execute(table)
         print("Ready")
-        # self.connection.close()
 
     def insert_in_table(self, email, first_name, last_name):
         query = f"INSERT OR REPLACE INTO customers \
