@@ -1,12 +1,12 @@
 import sqlite3
 
 
-class DatabaseGit():
-
+class DatabaseGit:
     def __init__(self):
         self.connection = sqlite3.connect(
             # r"C:\\Users\\User\\Desktop\\python_basics\\" + r"become_qa_auto.db"
-            r"C:\\Users\\User\\Desktop\\python_basics\\" + r"python_basics_database.db"
+            r"C:\\Users\\User\\Desktop\\python_basics\\"
+            + r"python_basics_database.db"
         )
         self.cursor = self.connection.cursor()
 
@@ -40,34 +40,45 @@ class DatabaseGit():
             (email, first_name, last_name) \
                 VALUES ('{email}', '{first_name}', '{last_name}')"
         self.cursor.execute(query)
-        self.connection.commit()   
+        self.connection.commit()
 
     def insert_in_table_orders(self, id, name, date_and_time):
         date_and_time = str(date_and_time)
         query = f"INSERT OR REPLACE INTO orders (id_orders, name, date_and_time) \
             VALUES ({id}, '{name}', '{date_and_time}')"
         self.cursor.execute(query)
-        self.connection.commit()     
+        self.connection.commit()
 
     def get_data_customers(self, name):
-        query = f"SELECT id_customers FROM customers WHERE first_name = '{name}'"            
+        query = f"SELECT id_customers FROM customers WHERE first_name = '{name}'"
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record
 
     def get_data_orders(self, name):
-        query = f"SELECT id_orders FROM orders WHERE name = '{name}'"            
+        query = f"SELECT id_orders FROM orders WHERE name = '{name}'"
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record
 
+    def inner_join_customers_orders(self):
+        sql = """SELECT email, first_name, last_name
+        FROM customers  
+        INNER JOIN orders 
+        ON customers.id_customers = orders.id_orders;"""
+        self.cursor.execute(sql)
+        self.result = self.cursor.fetchall() 
+        for row in self.result: 
+            print(row) 
+
+
 base = DatabaseGit()
 base.create_table_customers()
-base.insert_in_table_customers('mark.twain@mail.com', 'Mark', 'Twain')
-print(base.get_data_customers('Mark'))
+base.insert_in_table_customers("mark.twain@mail.com", "Mark", "Twain")
+print(base.get_data_customers("Mark"))
 # insert_empty_email = base.insert_in_table(None, 'Nicola', 'Tesla')
 # print(base.get_data('Nicola'))
 base.create_table_orders()
 base.insert_in_table_orders(1, "Phone SAMSUNG", "1/22/2024")
 print(base.get_data_orders("Phone SAMSUNG"))
-
+base.inner_join_customers_orders()
