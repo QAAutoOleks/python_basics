@@ -14,11 +14,11 @@ class DatabaseGit():
         # if table 'customers' exists, query 'DROP TABLE' deletes it
         self.cursor.execute("DROP TABLE IF EXISTS customers")
         table = """CREATE TABLE customers (
-            id.customers INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            id_customers INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             email VARCHAR(255) NOT NULL,
             first_name CHAR(25) NOT NULL,
             last_name CHAR(25),
-            FOREIGN KEY (id.customers) REFERENCES orders (id.orders)
+            FOREIGN KEY (id_customers) REFERENCES orders (id_orders)
         )"""
         self.cursor.execute(table)
         print("Ready")
@@ -27,10 +27,10 @@ class DatabaseGit():
         # if table 'customers' exists, query 'DROP TABLE' deletes it
         self.cursor.execute("DROP TABLE IF EXISTS orders")
         table = """CREATE TABLE orders (
-            id.orders INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            id_orders INTEGER NOT NULL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             date_and_time CHAR(25) NOT NULL,
-            FOREIGN KEY (id.orders) REFERENCES customers (id.customers)
+            FOREIGN KEY (id_orders) REFERENCES customers (id_customers)
         )"""
         self.cursor.execute(table)
         print("Ready")
@@ -42,15 +42,21 @@ class DatabaseGit():
         self.cursor.execute(query)
         self.connection.commit()   
 
-    def insert_in_table_orders(self, name, date_and_time):
+    def insert_in_table_orders(self, id, name, date_and_time):
         date_and_time = str(date_and_time)
-        query = f"INSERT OR REPLACE INTO orders (name, date_and_name) \
-            VALUES ('{name}', '{date_and_name}')"
+        query = f"INSERT OR REPLACE INTO orders (id_orders, name, date_and_time) \
+            VALUES ({id}, '{name}', '{date_and_time}')"
         self.cursor.execute(query)
         self.connection.commit()     
 
-    def get_data(self, name):
-        query = f"SELECT email FROM customers WHERE first_name = '{name}'"            
+    def get_data_customers(self, name):
+        query = f"SELECT id_customers FROM customers WHERE first_name = '{name}'"            
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
+
+    def get_data_orders(self, name):
+        query = f"SELECT id_orders FROM orders WHERE name = '{name}'"            
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record
@@ -58,9 +64,10 @@ class DatabaseGit():
 base = DatabaseGit()
 base.create_table_customers()
 base.insert_in_table_customers('mark.twain@mail.com', 'Mark', 'Twain')
-print(base.get_data('Mark'))
+print(base.get_data_customers('Mark'))
 # insert_empty_email = base.insert_in_table(None, 'Nicola', 'Tesla')
 # print(base.get_data('Nicola'))
-
-
+base.create_table_orders()
+base.insert_in_table_orders(1, "Phone SAMSUNG", "1/22/2024")
+print(base.get_data_orders("Phone SAMSUNG"))
 
