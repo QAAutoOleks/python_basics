@@ -27,10 +27,11 @@ class DatabaseGit:
         # if table 'customers' exists, query 'DROP TABLE' deletes it
         self.cursor.execute("DROP TABLE IF EXISTS orders")
         table = """CREATE TABLE orders (
-            id_orders INTEGER NOT NULL PRIMARY KEY,
+            id_orders INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             name VARCHAR(255) NOT NULL,
             date_and_time CHAR(25) NOT NULL,
-            FOREIGN KEY (id_orders) REFERENCES customers (id_customers)
+            orders_id INTEGER,
+            FOREIGN KEY (orders_id) REFERENCES customers (id_customers)
         )"""
         self.cursor.execute(table)
         print("Ready")
@@ -42,10 +43,10 @@ class DatabaseGit:
         self.cursor.execute(query)
         self.connection.commit()
 
-    def insert_in_table_orders(self, id, name, date_and_time):
+    def insert_in_table_orders(self, name, date_and_time, orders_id):
         date_and_time = str(date_and_time)
-        query = f"INSERT OR REPLACE INTO orders (id_orders, name, date_and_time) \
-            VALUES ({id}, '{name}', '{date_and_time}')"
+        query = f"INSERT OR REPLACE INTO orders (name, date_and_time, orders_id) \
+            VALUES ('{name}', '{date_and_time}', {orders_id})"
         self.cursor.execute(query)
         self.connection.commit()
 
@@ -56,7 +57,7 @@ class DatabaseGit:
         return record
 
     def get_data_orders(self, name):
-        query = f"SELECT id_orders FROM orders WHERE name = '{name}'"
+        query = f"SELECT orders_id FROM orders WHERE name = '{name}'"
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record
@@ -65,7 +66,8 @@ class DatabaseGit:
         sql = """SELECT email, first_name, last_name
         FROM customers  
         INNER JOIN orders 
-        ON customers.id_customers = orders.id_orders;"""
+        ON customers.id_customers = orders.orders_id
+        WHERE id_customers = 1;"""
         self.cursor.execute(sql)
         self.result = self.cursor.fetchall() 
         for row in self.result: 
@@ -80,7 +82,10 @@ print(base.get_data_customers("Mark"))
 # insert_empty_email = base.insert_in_table(None, 'Nicola', 'Tesla')
 # print(base.get_data('Nicola'))
 base.create_table_orders()
-base.insert_in_table_orders(1, "Phone SAMSUNG", "1/22/2024")
-base.insert_in_table_orders(2, "Laptop HP", "12/12/2023")
+base.insert_in_table_orders("Phone SAMSUNG", "1/22/2024", 1)
+base.insert_in_table_orders("Phone SAMSUNG", "2/22/2024", 2)
+base.insert_in_table_orders("Laptop HP", "12/12/2023", 2)
+base.insert_in_table_orders("Charger SAMSUNG", "1/20/2024", 1)
 print(base.get_data_orders("Phone SAMSUNG"))
+print(base.get_data_orders("Charger SAMSUNG"))
 base.inner_join_customers_orders()
