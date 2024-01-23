@@ -18,5 +18,7 @@ else:
 time.sleep(2)
 search_field.submit()
 time.sleep(2)
+error_field = driver.find_element(By.XPATH, '//*[@id="js-flash-container"]/div/div/div').text
+print(error_field)
 
 driver.close()
