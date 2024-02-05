@@ -3,63 +3,44 @@ import math
 
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        quantity_in_row = 1
-        quantity_generous = 0
-        quantity_row = numRows
-        arr1 = list()
-        while len(arr1) < len(s):
-            for i in range(0, numRows):
-                if quantity_row == numRows:
-                    arr1.append(quantity_generous)
-                    quantity_generous += 1
-                else:
-                    if quantity_in_row == quantity_row:
-                        arr1.append(quantity_generous)
-                        quantity_generous += 1
-                        quantity_in_row += 1
-                    else:
-                        quantity_generous += 1
-                        quantity_in_row += 1
-            quantity_in_row = 1
-            quantity_row -= 1
-            if quantity_row <= 1:
-                quantity_row = numRows
-        y = 0
-        z = 0
-        array = []
-        x = 0
-        b = 1
-        while z < len(s):
-            arr_output = list()
-            for i in range(0, numRows):
-                if y in arr1 and z < len(s):
-                    arr_output.insert(i, s[z])
-                    z += 1
-                    y += 1
-                else:
-                    arr_output.append(" ")
-                    y += 1
-            array.insert(x, arr_output)
-            arr_output = list()
-            x += 1
-            b += 1
-        str = ""
-        a = 0
-        while len(str) < len(s):
-            for row in array:
-                if a < len(row):
-                    if row[a] != " ":
-                        str += row[a]
-                else:
-                    break
-            a += 1
-        return str
+        arr = []
+        s_editing = s
+        number_in_iteration = 0
+        while(len(s_editing) > 0):
+            if number_in_iteration == 0:
+                arr.append(s_editing[0:numRows])
+                s_editing = s_editing[numRows:len(s)]
+            else:
+                arr.append(s_editing[0:1])
+                s_editing = s_editing[1:len(s)]
+            number_in_iteration += 1
+            if number_in_iteration == numRows:
+                number_in_iteration == 0
+
+        return arr
+
+    def quantity_of_cols(self, s, numRows):
+        counter_cols = 0
+        number_in_iteration = 0
+        len_str = len(s)
+        while(len_str > 0):
+            if number_in_iteration == 0:
+                len_str -= numRows
+                counter_cols +=1
+            else:
+                len_str -= 1
+                counter_cols +=1
+            number_in_iteration += 1
+            if number_in_iteration == numRows:
+                number_in_iteration == 0
+
+        return counter_cols
 
 
 solution = Solution()
 print(
     solution.convert(
-        "acgvowybplftrgdhcdmqqsazmaucxggaimvykvcbjhxapaktfykvqmwemshjynjjbhhoejpnsoqioadvynqrboxnigzhtkqxrznwjclbrblhbpdcevvgmsvuzuduhvryvgwejkhcltlpiqroomucgsyfmcatxtuuasalcipqdcfnvybjmynsqlaepaanvujxokkruzhxeokzmnkalxsdisiauinseypskalebubfingwbqwonruylcyimnaqnpkyrwctsgadvhbyzynprjnclnkxcmppczpvxsqqarvvawuzwjopsdsfseeuttmxubssvjkxchtcdpbaaspuvjboqfkjaygucaozjyxlfspljrnjlefgqiwinjrnhzjjbyjlygygaorjhguskzaahziwiblpcubeumrvsrbufudocximylpfkzdudojhkmnhyecsyfmfbpudmerkpgrbiuvnkhuxvieuoimmnzsoqotfskpktjlbfjqqsknnuthjbwxoxpepfxuyjmkcvxfagvsaghoccxldvltscziiyciiqsklpsoyniyvsoyumlyjwtcztmjrqrzhlmsaeiarrbplpnfdydpxzrwsfflvyncjzxlfhoya",
-        250,
+        "rrxtvodtzzduonaigmfdalyzeocxsmmmflfablvckbwyoxjvloalbamfppehdrvieblgmgiyhhxygivtwvfzvtgmikwndryisjqeradzhczpmujirqjojpbuzxhdohnjqdpkdulnykekgnszddnpsojsnsxeaknspecuznjxzoifbcehguwykfsyzrezdtusxwpwmywnmgvqizxqvtrgajgzdmbgfvzctobhozvdfqtnrsgnlxvnidmlppsukryghbnxaiafyvvqnbfyyangfasurmqcfoimsxlsgmaghvwxydvyflgknaeemugrlqfdorxwfzcoubluejskubuhbbloxuhimnnagnynmbbjcndiwyssbpzcqmsniayvpnxxawknxlybadjybeqctrhlgzyobyjsmjpmfzbenzfndqmguelnwsyetzsxzeplnfasgdytddhitvqqzbfxvgbrfwogadspkujrxhkcmtkhobxqedncjrtqpjwroqgzkpqiwckkwxrkapaeuqidhdvymrpdkvcumuekwpuumlfmahsuxdzgguevotayocscyxmwogrcswqufkrdnqlwnqtbjtbaxvcvuprixikpgckondravcyiurlgkoghkkeebypzizqpccdrfwtbaslvjxbwljfxvmczkrassqjwvonakhdnbpkmolkbwqztcbumuugonqlieaipjoekdoxrbhszzrsduprqjyfyosgssrjcfnmidlbettdunyyjnpayphxdzfyrwjvdxilcvohqimlxklgzciyspxxqcvibfdeensgjgpzqcmnoxwoagouylroppyquevarnictyemaqzoqxesesmcffsxurnqvkqozztvxxhzpiphguz",
+        399,
     )
 )

@@ -1,17 +1,24 @@
+import undetected_chromedriver as uc
 from selenium import webdriver
-import time
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+import time
 
-driver = webdriver.Chrome()
-driver.get("https://rozetka.com.ua/ua/")
+driver = uc.Chrome()
+driver.get("https://rozetka.com.ua/ua/notebooks/c80004/")
 
-# If code below won't be deleted - 
-# NoSuchElementException
-# element = driver.find_element(By.CSS_SELECTOR, '[class="button button_color_green button_size_medium search-form__submit"]')
-# time.sleep(3)
-# print(element.text)
+good = driver.find_elements(
+    By.XPATH, "//div[@class='goods-tile__content']")
+for element in good:
+    if element.text.find('АКЦІЯ') != -1:
+        index_search = element.text.find('₴')
+        old_price = element.text[index_search-7:index_search]
+        print(int(old_price.replace(" ", "")))
+        new_price = element.text[index_search+2:index_search+8]
+        print(int(new_price.replace(" ", "")))
+        print()
 
-time.sleep(3)
-elements = driver.find_elements(By.TAG_NAME, "a")
-for e in elements:
-    print(e.text)
+# stri = "123456789"
+# sl = slice(5,100)
+# print(stri[sl])
