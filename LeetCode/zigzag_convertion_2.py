@@ -8,9 +8,9 @@ class Solution:
         s_result = ""
         zero_string = ""
         number_in_iteration = 0
-        index_in_string = 2
+        index_in_string = 1
         s_temp_full_column = ""
-        counter_column = 1
+        counter_column = 0
         while(len(s_editing) > 0):
             if number_in_iteration == 0:
                 if len(s_editing[0:numRows]) == numRows:
@@ -25,7 +25,7 @@ class Solution:
                     s_editing = ""
             else:
                 for add_zero in range(0, numRows):
-                    if counter_column != numRows-index_in_string:
+                    if index_in_string != numRows-counter_column:
                         zero_string += "0"
                         index_in_string +=1
                     else:
@@ -36,19 +36,18 @@ class Solution:
                 zero_string = ""
             counter_column += 1
             number_in_iteration += 1
+            index_in_string = 1
             if number_in_iteration == numRows - 1:
                 number_in_iteration = 0
                 index_in_string = 1
-                counter_column = 1
+                counter_column = 0
 
         ind = 0
-        for i in range(ind, numRows):
+        while(ind != numRows):
             for string_element in arr:
                 if string_element[ind] != "0":
                     s_result += string_element[ind]
-            ind += 2
-            if numRows == ind:
-                break
+            ind += 1
 
         return s_result
 
