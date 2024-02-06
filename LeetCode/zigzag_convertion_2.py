@@ -37,7 +37,7 @@ class Solution:
             counter_column += 1
             number_in_iteration += 1
             index_in_string = 1
-            if number_in_iteration == numRows - 1:
+            if number_in_iteration == numRows - 1 or numRows == 1:
                 number_in_iteration = 0
                 index_in_string = 1
                 counter_column = 0
@@ -55,5 +55,5 @@ class Solution:
 solution = Solution()
 print(
     solution.convert(
-        "PAYPALISHIRING", 4)
+        "AB", 1)
 )
