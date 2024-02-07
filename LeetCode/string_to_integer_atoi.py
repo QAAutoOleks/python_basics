@@ -5,13 +5,13 @@ class Solution(object):
         is_minus = False
         is_plus_before = False
         for symbol in s:
-            if symbol == " ":
+            if symbol == " " and len(str_finish) == 0:
                 pass
             elif symbol == "+" and len(str_finish) == 0 and is_minus == False:
                 is_plus_before = True
             elif symbol.isnumeric():
                 str_finish += symbol
-            elif symbol == "-" and is_plus_before == False:
+            elif symbol == "-" and is_plus_before == False and len(str_finish) == 0:
                 is_minus = True
             else:
                 break
@@ -20,7 +20,7 @@ class Solution(object):
         
         if len(str_finish) == 0:
             return 0
-        elif int(str_finish) > 2147483648:
+        elif int(str_finish) >= 2147483648:
             return 2147483647
         elif int(str_finish) < -2147483648:
             return -2147483648
@@ -28,4 +28,4 @@ class Solution(object):
             return int(str_finish)
 
 solution = Solution()
-print(solution.myAtoi("+-12"))
+print(solution.myAtoi("   +0 123"))
