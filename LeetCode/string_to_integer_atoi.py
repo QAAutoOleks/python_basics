@@ -5,19 +5,34 @@ class Solution(object):
         is_minus = False
         is_plus_before = False
         for symbol in s:
-            if symbol == " " and len(str_finish) == 0:
+            if (
+                symbol == " "
+                and len(str_finish) == 0
+                and is_plus_before == False
+                and is_minus == False
+            ):
                 pass
-            elif symbol == "+" and len(str_finish) == 0 and is_minus == False:
+            elif (
+                symbol == "+"
+                and len(str_finish) == 0
+                and is_minus == False
+                and is_plus_before == False
+            ):
                 is_plus_before = True
             elif symbol.isnumeric():
                 str_finish += symbol
-            elif symbol == "-" and is_plus_before == False and len(str_finish) == 0:
+            elif (
+                symbol == "-"
+                and is_plus_before == False
+                and len(str_finish) == 0
+                and is_minus == False
+            ):
                 is_minus = True
             else:
                 break
         if is_minus == True and len(str_finish) > 0:
             str_finish = "-" + str_finish
-        
+
         if len(str_finish) == 0:
             return 0
         elif int(str_finish) >= 2147483648:
@@ -27,5 +42,6 @@ class Solution(object):
         else:
             return int(str_finish)
 
+
 solution = Solution()
-print(solution.myAtoi("   +0 123"))
+print(solution.myAtoi(" ++1"))
