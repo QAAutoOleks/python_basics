@@ -4,6 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        i, j, k = None, None, None
         for i in range(1, len(nums)):
             if nums[]
 

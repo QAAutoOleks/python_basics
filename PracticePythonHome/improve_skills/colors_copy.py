@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver import Keys
 
 
 driver = webdriver.Chrome()
@@ -13,7 +13,7 @@ def add_numbers(a, b):
     return a + b
 
 def test_add_numbers_positive():
-    assert add_numbers_positive(1, 2) == 3
+    assert add_numbers(1, 2) == 3
 
 def test_add_numbers_negative():
     assert add_numbers(-1, 2) == 1
