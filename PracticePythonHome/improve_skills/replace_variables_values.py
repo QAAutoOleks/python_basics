@@ -1,4 +1,6 @@
 a, b = 3, 5
+print(f'a = {a}')
+print(f'b = {b}')
 a, b = b, a
-print(a)
-print(b)
+print(f'a = {a}')
+print(f'b = {b}')
