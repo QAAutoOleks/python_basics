@@ -4,10 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        i, j, k = None, None, None
-        for i in range(1, len(nums)):
-            if nums[]
+        empty_list = []
+        if len(nums) < 3:
+            return []
+        else:
+            empty_list.append(nums[0])
+            for i in range(1, len(nums)):
+                if nums[i] != empty_list[i - 1]:
+                    empty_list.append(nums)
 
 
 sol = Solution()
-print(sol.threeSum())
+print(sol.threeSum([1, 3, 4]))

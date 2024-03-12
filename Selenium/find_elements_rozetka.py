@@ -19,6 +19,3 @@ for element in good:
         print(int(new_price.replace(" ", "")))
         print()
 
-# stri = "123456789"
-# sl = slice(5,100)
-# print(stri[sl])
