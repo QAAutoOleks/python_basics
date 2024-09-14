@@ -56,6 +56,7 @@ class Solution:
         return str
 
 
+
 solution = Solution()
 print(
     solution.convert(
