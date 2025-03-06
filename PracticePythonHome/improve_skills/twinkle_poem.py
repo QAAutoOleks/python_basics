@@ -1,5 +1,5 @@
-s = "Twinkle, twinkle, little star, How I wonder what you are! \
-Up above the world so high, Like a diamond in the sky. Twinkle, \
-twinkle, little star, How I wonder what you are"
+a = "Twinkle, twinkle, little star, \nHow I wonder what you are!"
+b = "Up above the world so high, Like a diamond in the sky. Twinkle,"
+c = "twinkle, little star, How I wonder what you are"
 
-print(s)
+print('{}{}{}'.format(a,b,c))
