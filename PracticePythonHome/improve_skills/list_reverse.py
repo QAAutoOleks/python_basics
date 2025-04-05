@@ -5,4 +5,5 @@ def reverse(lst):
         lst_reverse.append(lst[i-1])
     return lst_reverse
 
+
 print(reverse([1, 2, 3]))
