@@ -13,6 +13,7 @@ rows, cols = (5, 3)
 print([[0 for i in range(cols)] for j in range(rows)])
 
 
+
 #Create 2D array with 4 rows and 5 columns
 #array=[[23,45,43,23,45],[45,67,54,32,45],[89,90,87,65,44],[23,45,67,32,10]]
 #insert the row at 5 th position
