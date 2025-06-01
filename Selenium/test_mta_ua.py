@@ -5,16 +5,16 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.service import Service
 import time
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-driver.get("https://mta.ua/telefoni-ta-smartfoni/827116-smartfon-apple-iphone-15-pro-max-256gb-natural-titanium?utm_medium=cpc&utm_source=hotline&utm_campaign=&utm_term=Apple+iPhone+15+Pro+Max+256GB+Natural+Titanium+%28MU793%29&utm_id=hotline_11&utm_content=827116")
-
-time.sleep(5)
-search_field = driver.find_element(By.XPATH, '//*[@id="search-form"]/input')
-search_field.send_keys('for loop')
-search_field.submit()
-time.sleep(2)
-
-driver.close()
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+# driver.get("https://mta.ua/telefoni-ta-smartfoni/827116-smartfon-apple-iphone-15-pro-max-256gb-natural-titanium?utm_medium=cpc&utm_source=hotline&utm_campaign=&utm_term=Apple+iPhone+15+Pro+Max+256GB+Natural+Titanium+%28MU793%29&utm_id=hotline_11&utm_content=827116")
+#
+# time.sleep(5)
+# search_field = driver.find_element(By.XPATH, '//*[@id="search-form"]/input')
+# search_field.send_keys('for loop')
+# search_field.submit()
+# time.sleep(2)
+#
+# driver.close()
 
 # class FindByID():
 #     def locate_by_id_demo(self):
