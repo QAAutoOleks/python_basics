@@ -13,3 +13,8 @@ def test_sum_string(addition_testing):
 @pytest.mark.commissioning_testing
 def test_divisible_checking(addition_testing):
     assert addition_testing.divisible_by_5_and_7(71) == 2
+
+
+@pytest.mark.commissioning_testing
+def test_temperature_converter(addition_testing):
+    assert addition_testing.converter_fahrenheit(71) == 21.666666666666668
