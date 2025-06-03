@@ -1,3 +1,6 @@
+import  math
+
+
 class Commissioning:
 
 
@@ -21,7 +24,14 @@ class Commissioning:
 
         return incr
 
+
     def converter_fahrenheit(self, temperature):
         c = 5 * (temperature-32) / 9
 
         return c
+
+
+    def circle_area_calculator(self, r):
+        s = math.pi * r**2
+
+        return s
