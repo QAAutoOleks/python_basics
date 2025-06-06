@@ -30,3 +30,10 @@ def test_circle_area_calculator(addition_testing):
 @pytest.mark.commissioning_testing
 def test_string_to_int(addition_testing):
     assert addition_testing.string_to_int('-123') == 123
+
+
+@pytest.mark.commissioning_testing
+def test_is_value_contained_in_list(addition_testing):
+    assert addition_testing.is_value_contained(1) == True
+    assert addition_testing.is_value_contained(0) == False
+    assert addition_testing.is_value_contained(-1) == False

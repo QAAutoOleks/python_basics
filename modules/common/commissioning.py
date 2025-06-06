@@ -41,3 +41,13 @@ class Commissioning:
         int_result = abs(int(string_variable))
 
         return int_result
+
+
+    def is_value_contained(self, given_value):
+        result = False
+        given_list = [1, 2, 3, 4, 5]
+        for i in given_list:
+            if given_value == i:
+                result = True
+
+        return result
