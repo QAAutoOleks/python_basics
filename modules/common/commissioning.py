@@ -35,3 +35,9 @@ class Commissioning:
         s = math.pi * r**2
 
         return s
+
+
+    def string_to_int(self, string_variable):
+        int_result = abs(int(string_variable))
+
+        return int_result

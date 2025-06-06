@@ -25,3 +25,8 @@ def test_temperature_converter(addition_testing):
 @pytest.mark.commissioning_testing
 def test_circle_area_calculator(addition_testing):
     assert addition_testing.circle_area_calculator(5) == math.pi * 5**2
+
+
+@pytest.mark.commissioning_testing
+def test_string_to_int(addition_testing):
+    assert addition_testing.string_to_int('-123') == 123
