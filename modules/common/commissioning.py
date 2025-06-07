@@ -53,3 +53,4 @@ class Commissioning:
         return result
 
 
+    # terinal testing
