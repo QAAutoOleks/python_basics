@@ -37,3 +37,8 @@ def test_is_value_contained_in_list(addition_testing):
     assert addition_testing.is_value_contained(1) == True
     assert addition_testing.is_value_contained(0) == False
     assert addition_testing.is_value_contained(-1) == False
+
+
+@pytest.mark.commissioning_testing
+def test_common_divisor(addition_testing):
+    assert addition_testing.common_divisor(3, 7) == 21

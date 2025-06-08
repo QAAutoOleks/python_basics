@@ -53,3 +53,12 @@ class Commissioning:
         return result
 
 
+    def common_divisor(self, a, b):
+        stop_value = True
+        while(stop_value):
+            for i in range(a*b + 1):
+                if i > 1 and i % a == 0 and i % b == 0:
+                    stop_value = False
+                    break
+
+        return i
