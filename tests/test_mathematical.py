@@ -45,6 +45,12 @@ def test_common_divisor(addition_testing):
 
 
 @pytest.mark.commissioning_testing
-def test_type_validation(addition_testing):
-    assert addition_testing.type_validation(10) == True
-    assert addition_testing.type_validation(10.2) == False
+def test_type_validation_int(addition_testing):
+    assert addition_testing.type_validation_int(10) == True
+    assert addition_testing.type_validation_int(10.2) == False
+
+
+@pytest.mark.commissioning_testing
+def test_type_validation_str(addition_testing):
+    assert addition_testing.type_validation_str('10') == True
+    assert addition_testing.type_validation_str(10) == False

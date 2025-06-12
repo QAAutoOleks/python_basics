@@ -64,7 +64,13 @@ class Commissioning:
         return i
 
 
-    def type_validation(self, a):
+    def type_validation_int(self, a):
         result = isinstance(a, int)
+
+        return result
+
+
+    def type_validation_str(self, a):
+        result = isinstance(a, str)
 
         return result
