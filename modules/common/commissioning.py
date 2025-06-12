@@ -62,3 +62,9 @@ class Commissioning:
                     break
 
         return i
+
+
+    def type_validation(self, a):
+        result = isinstance(a, int)
+
+        return result

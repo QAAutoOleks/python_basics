@@ -42,3 +42,9 @@ def test_is_value_contained_in_list(addition_testing):
 @pytest.mark.commissioning_testing
 def test_common_divisor(addition_testing):
     assert addition_testing.common_divisor(3, 7) == 21
+
+
+@pytest.mark.commissioning_testing
+def test_type_validation(addition_testing):
+    assert addition_testing.type_validation(10) == True
+    assert addition_testing.type_validation(10.2) == False
